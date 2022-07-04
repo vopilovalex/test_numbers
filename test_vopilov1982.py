@@ -17,10 +17,11 @@ user = "postgres"
 password = "adw"
 db_name = "Test_Vopilov"
 
-# Scope, который позволяет просматривать, редактировать, удалять или создавать файлы на Google Диске.
+# Scope, который позволяет просматривать, редактировать,\
+#удалять или создавать файлы на Google Диске.
 SCOPES = ['https://www.googleapis.com/auth/drive']
 # Указываем в переменной ACCOUNT_FILE путь к файлу с ключами сервисного аккаунта.
-ACCOUNT_FILE = '/home/toma/Загрузки/vopilov1982-641a45a1d1df.json'
+ACCOUNT_FILE = 'vopilov1982-641a45a1d1df.json'
 
 def course():
     # Ежедневные курсы валют ЦБ РФ
@@ -112,7 +113,8 @@ def add_and_change_order_base(order):
         connection.autocommit = True
 
         with connection.cursor() as cursor:
-            cursor.execute("""SELECT cost_usd, delivery_time FROM orders WHERE order_number = %s""", [order[1]])
+            cursor.execute("""SELECT cost_usd, delivery_time FROM orders WHERE order_number = %s"""
+                           , [order[1]])
        
             order_from_db = cursor.fetchone()
             if order_from_db:
